@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{61ABD5F2-D818-CB2E-922B-237CA50CD9DA}") = "2D Roguelike Tutorial", "Assembly-CSharp.csproj", "{795FD324-F55C-F87E-6A0F-6ADEFF0E4A4E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{795FD324-F55C-F87E-6A0F-6ADEFF0E4A4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{795FD324-F55C-F87E-6A0F-6ADEFF0E4A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{795FD324-F55C-F87E-6A0F-6ADEFF0E4A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{795FD324-F55C-F87E-6A0F-6ADEFF0E4A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
