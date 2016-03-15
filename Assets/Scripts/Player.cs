@@ -12,7 +12,8 @@ public class Player : MovingObject {
 	private int food;
 
 	// Use this for initialization
-	protected override void Start () {
+	protected override void Start ()
+    {
 		animator = GetComponent<Animator> ();
 
 		food = GameManager.instance.playerFoodPoints;
@@ -20,12 +21,14 @@ public class Player : MovingObject {
 		base.Start ();
 	}
 
-	private void OnDisable() {
+	private void OnDisable()
+    {
 		GameManager.instance.playerFoodPoints = food;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		if (!GameManager.instance.playersTurn)
 			return;
 
@@ -42,7 +45,8 @@ public class Player : MovingObject {
 			AttemptMove<Wall> (horizontal, vertical);
 	}
 
-	protected override void AttemptMove <T> (int xDir, int yDir) {
+	protected override void AttemptMove <T> (int xDir, int yDir)
+    {
 		food--;
 
 		base.AttemptMove <T> (xDir, yDir);
@@ -54,7 +58,46 @@ public class Player : MovingObject {
 		GameManager.instance.playersTurn = false;
 	}
 
-	private void CheckIfGameOver() {
+    private void OnTriggerEnter2D (Collider2D other)
+    {
+        if (other.tag == "Exit")
+        {
+            Invoke("Restart", restartLevelDelay);
+            enabled = false;
+        }
+        else if (other.tag == "Food")
+        {
+            food += pointsPerFood;
+            other.gameObject.SetActive(false);
+        }
+        else if (other.tag == "Soda")
+        {
+            food += pointsPerSoda;
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    protected override void OnCantMove <T> (T component)
+    {
+        Wall hitWall = component as Wall;
+        hitWall.DamageWall(wallDamage);
+        animator.SetTrigger("playerChop");
+    }
+
+    private void Restart()
+    {
+        Application.LoadLevel(Application.loadedLevel);
+    }
+
+    public void LoseFood (int loss)
+    {
+        animator.SetTrigger("playerHit");
+        food -= loss;
+        CheckIfGameOver();
+    }
+
+	private void CheckIfGameOver()
+    {
 		if (food <= 0)
 			GameManager.instance.GameOver ();
 	}
